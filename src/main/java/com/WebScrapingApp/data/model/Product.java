@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -20,7 +21,9 @@ public class Product {
     private String subCategory;
     private int favoriteCount;
     private float ratingScore;
+    private int ratingCount;
     private BigDecimal price;
+    private LocalDate date;
 
     @ManyToOne
     @JoinColumn(name="sub_title_id",referencedColumnName = "id")

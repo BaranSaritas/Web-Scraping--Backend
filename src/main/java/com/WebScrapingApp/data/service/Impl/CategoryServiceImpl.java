@@ -1,11 +1,11 @@
 package com.WebScrapingApp.data.service.Impl;
 
-import com.WebScrapingApp.data.dto.request.CategoryCreateDto;
-import com.WebScrapingApp.data.dto.request.CategoryDto;
-import com.WebScrapingApp.data.dto.request.TitleCreateDTO;
+import com.WebScrapingApp.data.dto.request.*;
 import com.WebScrapingApp.data.model.Category;
+import com.WebScrapingApp.data.model.SubTitle;
 import com.WebScrapingApp.data.repository.CategoryRepository;
 import com.WebScrapingApp.data.service.CategoryService;
+import com.WebScrapingApp.data.service.SubTitleService;
 import com.WebScrapingApp.data.service.TitleService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -22,6 +22,7 @@ public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
     private final ModelMapper modelMapper;
     private final TitleService titleService;
+    private final SubTitleService subTitleService;
 
     @Override
     public List<CategoryDto> getAllCategories() {
@@ -91,12 +92,17 @@ public class CategoryServiceImpl implements CategoryService {
                         titleCreateDTO.setCategoryId(i.getId() );
                         titleCreateDTO.setTitleName(title.getTitleName());
                         titleCreateDTO.setTitleUrl(title.getTitleUrl());
-                        titleService.createTitle(titleCreateDTO);
+                        TitleDTO savedTitleDTO = titleService.createTitle(titleCreateDTO);
 
                         title.getSubTitleList().forEach(subTitleDTO -> {
+                            SubTitleDTO subTitleDTOs = new SubTitleDTO();
+                            subTitleDTOs.setTitleName(subTitleDTO.getTitleName());
+                            subTitleDTOs.setTitleUrl(subTitleDTO.getTitleUrl());
+                            subTitleDTOs.setProductList(subTitleDTO.getProductList());
+                            subTitleDTOs.setTitle(savedTitleDTO);
 
+                            subTitleService.createSubTitle(subTitleDTOs);
                         });
-
                     });
                 }
         );

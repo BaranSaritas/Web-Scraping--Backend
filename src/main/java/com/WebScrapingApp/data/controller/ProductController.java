@@ -1,5 +1,6 @@
 package com.WebScrapingApp.data.controller;
 
+import com.WebScrapingApp.data.dto.request.ListCreateProduct;
 import com.WebScrapingApp.data.dto.request.ProductCreateDTO;
 import com.WebScrapingApp.data.dto.request.ProductDTO;
 import com.WebScrapingApp.data.service.ProductService;
@@ -28,9 +29,14 @@ public class ProductController {
         return ResponseEntity.ok(productDTO);
     }
 
+    @PostMapping("/{id}")
+    public ResponseEntity<ProductDTO> createProduct(@PathVariable Long id, @RequestBody ProductCreateDTO productCreateDTO) {
+        ProductDTO productDTO = productService.createProduct(id,productCreateDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(productDTO);
+    }
     @PostMapping
-    public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductCreateDTO productCreateDTO) {
-        ProductDTO productDTO = productService.createProduct(productCreateDTO);
+    public ResponseEntity<List<ProductDTO>> createProductList(@RequestBody ListCreateProduct productCreateDTO) {
+        List<ProductDTO> productDTO = productService.createProducts(productCreateDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(productDTO);
     }
 

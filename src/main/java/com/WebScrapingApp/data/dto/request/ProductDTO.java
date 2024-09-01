@@ -17,7 +17,8 @@ public class ProductDTO {
     private String name;
     private String subCategory;
     private int favoriteCount;
+    private int ratingCount;
     private float ratingScore;
     private BigDecimal price;
-    private Long titleId; // Assuming Title entity has an ID field
+    private Long titleId;
 }

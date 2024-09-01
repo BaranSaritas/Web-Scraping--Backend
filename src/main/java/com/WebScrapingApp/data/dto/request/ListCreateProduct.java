@@ -1,6 +1,5 @@
 package com.WebScrapingApp.data.dto.request;
 
-import com.WebScrapingApp.data.model.Title;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,9 +11,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SubTitleDTO {
-    private String titleName;
-    private String titleUrl;
-    private List<ProductDTO> productList;
-    private TitleDTO title;
+public class ListCreateProduct {
+    List<ProductCreateDTO> productCreateDTOS;
+    Long subtitleId;
 }

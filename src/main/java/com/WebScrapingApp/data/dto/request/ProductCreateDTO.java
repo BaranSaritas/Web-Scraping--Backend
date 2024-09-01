@@ -16,6 +16,7 @@ public class ProductCreateDTO {
     private String name;
     private String subCategory;
     private int favoriteCount;
+    private int ratingCount =0;
     private float ratingScore;
     private BigDecimal price;
     private Long titleId;

@@ -1,5 +1,6 @@
 package com.WebScrapingApp.data.service;
 
+import com.WebScrapingApp.data.dto.request.ListCreateProduct;
 import com.WebScrapingApp.data.dto.request.ProductCreateDTO;
 import com.WebScrapingApp.data.dto.request.ProductDTO;
 
@@ -10,9 +11,11 @@ public interface ProductService {
 
     ProductDTO getProductById(Long id);
 
-    ProductDTO createProduct(ProductCreateDTO productCreateDTO);
+    ProductDTO createProduct(Long id, ProductCreateDTO productCreateDTO);
 
     ProductDTO updateProduct(Long id, ProductCreateDTO productCreateDTO);
 
     void deleteProduct(Long id);
+
+    List<ProductDTO> createProducts(ListCreateProduct productCreateDTO);
 }
